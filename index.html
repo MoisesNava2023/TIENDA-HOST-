@@ -26,7 +26,6 @@
         body.admin-active .admin-delete-button { display: block; }
         .favorite-button.added { background-color: #ec4899; color: white; }
         .favorite-button.added:hover { background-color: #db2777; }
-        /* Removido #image-preview */
 
         /* Estilos Modal Imagen Grande */
         #image-modal {
@@ -86,7 +85,7 @@
                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Nuestros Productos</h2>
                 <div id="product-categories-container">
                      <p class="text-center loading-state">Cargando productos...</p>
-                    </div>
+                     </div>
                 <p id="no-products-message" class="text-center text-gray-500 mt-8 hidden">No hay productos disponibles en este momento.</p>
                 <p id="products-error-message" class="text-center text-red-500 mt-8 hidden">Error al cargar los productos.</p>
             </div>
@@ -98,14 +97,14 @@
                  <p class="text-center text-sm text-gray-500 mb-6">(Guardados localmente en este navegador)</p>
                 <div id="favorites-list" class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
                     <p id="no-favorites-message" class="text-center text-gray-500">No has añadido ningún producto a favoritos todavía.</p>
-                </div>
+                     </div>
             </div>
         </section>
 
         <section id="nosotros" class="bg-white py-16">
             <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-8 md:mb-0 md:pr-12">
-                    <img src="https://placehold.co/600x400/f48fb1/ffffff?text=Imagen+Nosotros" alt="[Imagen Sobre Nosotros]" class="rounded-lg shadow-lg w-full" onerror="this.onerror=null; this.src='https://placehold.co/600x400/f48fb1/ffffff?text=Imagen+no+disponible';">
+                     <img src="https://placehold.co/600x400/f48fb1/ffffff?text=Imagen+Nosotros" alt="[Imagen Sobre Nosotros]" class="rounded-lg shadow-lg w-full" onerror="this.onerror=null; this.src='https://placehold.co/600x400/f48fb1/ffffff?text=Imagen+no+disponible';">
                 </div>
                 <div class="md:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Conoce a [Tu Nombre/Marca]</h2>
@@ -172,7 +171,8 @@
     </footer>
 
     <a href="https://wa.me/TUNUMERODETELEFONO?text=Hola%2C%20estoy%20interesado%2For%20en%20tus%20productos%20de%20maquillaje." class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
-        <img src="https://placehold.co/40x40/ffffff/25d366?text=W" alt="WhatsApp Logo"> </a>
+         <img src="https://placehold.co/40x40/ffffff/25d366?text=W" alt="WhatsApp Logo">
+    </a>
 
     <div id="admin-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 items-center justify-center z-50 px-4 overflow-y-auto py-10">
         <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-auto">
@@ -200,11 +200,12 @@
                  <div class="mb-6">
                     <label for="product-image-file" class="block text-gray-700 font-semibold mb-2">Imagen del Producto</label>
                     <input type="file" id="product-image-file" name="product-image-file" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100" required>
-                     </div>
+                 </div>
                 <div class="text-right">
                     <button type="submit" id="save-product-button" class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-2 px-6 rounded-lg shadow transition duration-300">Guardar Producto</button>
                 </div>
-                 <p id="admin-form-status" class="text-sm text-center mt-4"></p> </form>
+                 <p id="admin-form-status" class="text-sm text-center mt-4"></p>
+            </form>
         </div>
     </div>
 
@@ -219,27 +220,36 @@
 
     <script>
         // --- Configuración ---
-        const SUPABASE_URL = 'https://xlomfplzufpxvmyllypd.supabase.co'; // ¡TU URL!
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhsb21mcGx6dWZweHZteWxseXBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ4NDc4ODYsImV4cCI6MjA2MDQyMzg4Nn0.thYZxLQMEHL-JR0kUXGX1jZeChSc84QwMCimID4NNMQ'; // ¡TU CLAVE ANON!
+        // !! INICIO: VALORES INSERTADOS POR EL USUARIO !!
+        const SUPABASE_URL = 'https://xlomfplzufpxvmyllypd.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhsb21mcGx6dWZweHZteWxseXBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ4NDc4ODYsImV4cCI6MjA2MDQyMzg4Nn0.thYZxLQMEHL-JR0kUXGX1jZeChSc84QwMCimID4NNMQ';
+        // !! FIN: VALORES INSERTADOS POR EL USUARIO !!
+
         const FORM_ENDPOINT = "https://formspree.io/f/mjkydbke"; // Endpoint Formspree
-        const ADMIN_PASSWORD = "tu_contraseña_secreta"; // ¡¡CAMBIAR ESTO!! (Sigue sin ser seguro)
+        const ADMIN_PASSWORD = "tu_contraseña_secreta"; // ¡¡CAMBIAR ESTO!!
         const FAVORITES_STORAGE_KEY = 'makeupFavorites_v2'; // Clave para favoritos locales
         const IMAGE_BUCKET_NAME = 'images'; // Nombre de tu bucket público en Supabase
 
         // --- Inicialización Supabase ---
-        // Comprobar si supabase-js está cargado antes de crear el cliente
         let supabase = null;
-        if (window.supabase) {
-             supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-             console.log("Supabase client initialized.");
-        } else {
-            console.error("Supabase client library not loaded.");
-            // Podrías mostrar un mensaje de error al usuario aquí
-            alert("Error crítico: No se pudo cargar la librería de Supabase.");
+        try {
+            if (window.supabase) {
+                 supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                 console.log("Supabase client initialized.");
+            } else {
+                console.error("Supabase client library not loaded.");
+                throw new Error("Supabase library not available.");
+            }
+        } catch (error) {
+             console.error("Failed to initialize Supabase:", error);
+             alert("Error crítico: No se pudo inicializar la conexión con la base de datos.");
+             // Deshabilitar funcionalidades que dependen de Supabase si falla la inicialización
+             // (Opcional, pero buena práctica)
         }
 
 
         // --- Elementos del DOM ---
+        // (Se obtienen los elementos igual que antes)
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -250,7 +260,7 @@
         const addProductForm = document.getElementById('add-product-form');
         const productImageFile = document.getElementById('product-image-file');
         const saveProductButton = document.getElementById('save-product-button');
-        const adminFormStatus = document.getElementById('admin-form-status'); // Status para form admin
+        const adminFormStatus = document.getElementById('admin-form-status');
         const productCategoriesContainer = document.getElementById('product-categories-container');
         const noProductsMessage = document.getElementById('no-products-message');
         const productsErrorMessage = document.getElementById('products-error-message');
@@ -268,11 +278,14 @@
 
         // --- Inicialización ---
         document.addEventListener('DOMContentLoaded', () => {
-            if (supabase) { // Solo cargar si supabase se inicializó
+            if (supabase) {
                  loadProducts(); // Cargar productos desde Supabase
             } else {
+                 // Mostrar error si Supabase no se inicializó
                  productCategoriesContainer.innerHTML = '<p class="text-center text-red-500">Error al conectar con la base de datos.</p>';
                  noProductsMessage.classList.add('hidden');
+                 productsErrorMessage.classList.remove('hidden'); // Mostrar mensaje de error específico
+                 productsErrorMessage.textContent = 'Error: No se pudo inicializar la conexión con Supabase.';
             }
             loadFavorites(); // Cargar favoritos desde localStorage
             setupEventListeners();
@@ -292,7 +305,6 @@
             closeAdminModalButton.addEventListener('click', hideAdminModal);
             adminModal.addEventListener('click', handleClickOutsideAdminModal);
             addProductForm.addEventListener('submit', handleAddProduct);
-            // No necesitamos listener para productImageFile aquí, lo manejamos en handleAddProduct
 
             // Formulario de Contacto
             contactForm.addEventListener('submit', handleContactFormSubmit);
@@ -304,31 +316,26 @@
             });
         }
 
-        // --- Lógica de Productos (AHORA CON SUPABASE) ---
+        // --- Lógica de Productos (CON SUPABASE) ---
 
         async function loadProducts() {
-            if (!supabase) return; // No hacer nada si Supabase no está inicializado
+            if (!supabase) return;
 
-            productCategoriesContainer.innerHTML = '<p class="text-center loading-state">Cargando productos...</p>'; // Mostrar estado de carga
+            productCategoriesContainer.innerHTML = '<p class="text-center loading-state">Cargando productos...</p>';
             noProductsMessage.classList.add('hidden');
             productsErrorMessage.classList.add('hidden');
             productCategoriesContainer.classList.remove('hidden');
 
-
             try {
-                // Seleccionar todos los productos de la tabla 'products'
-                // Ordenar por categoría y luego por nombre para consistencia
                 const { data: products, error } = await supabase
                     .from('products')
                     .select('*')
                     .order('category', { ascending: true })
                     .order('name', { ascending: true });
 
-                if (error) {
-                    throw error; // Lanzar error para ser capturado por el catch
-                }
+                if (error) throw error;
 
-                productCategoriesContainer.innerHTML = ''; // Limpiar contenedor
+                productCategoriesContainer.innerHTML = '';
 
                 if (!products || products.length === 0) {
                     noProductsMessage.classList.remove('hidden');
@@ -337,7 +344,6 @@
                     noProductsMessage.classList.add('hidden');
                     productCategoriesContainer.classList.remove('hidden');
 
-                    // Agrupar productos por categoría
                     const productsByCategory = products.reduce((acc, product) => {
                         const category = product.category || 'Sin Categoría';
                         if (!acc[category]) acc[category] = [];
@@ -347,67 +353,51 @@
 
                     const sortedCategories = Object.keys(productsByCategory).sort();
 
-                    // Renderizar cada categoría y sus productos
                     sortedCategories.forEach(category => {
                         const categorySection = document.createElement('div');
                         categorySection.className = 'mb-12';
-
                         const categoryTitle = document.createElement('h3');
                         categoryTitle.className = 'text-2xl font-semibold text-pink-700 mb-6 border-b-2 border-pink-200 pb-2';
                         categoryTitle.textContent = category;
                         categorySection.appendChild(categoryTitle);
-
                         const categoryGrid = document.createElement('div');
                         categoryGrid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8';
 
                         productsByCategory[category].forEach(product => {
-                            // Obtener la URL pública de la imagen desde Supabase Storage
-                            let imageUrl = `https://placehold.co/600x400/f0f0f0/ffffff?text=No+img+path`; // Placeholder si no hay image_path
+                            let imageUrl = `https://placehold.co/600x400/f0f0f0/ffffff?text=No+img+path`;
                             if (product.image_path) {
-                                const { data: urlData } = supabase
-                                    .storage
-                                    .from(IMAGE_BUCKET_NAME)
-                                    .getPublicUrl(product.image_path); // Usar columna image_path
+                                const { data: urlData } = supabase.storage.from(IMAGE_BUCKET_NAME).getPublicUrl(product.image_path);
                                 if (urlData && urlData.publicUrl) {
                                     imageUrl = urlData.publicUrl;
                                 } else {
-                                     console.warn(`Could not get public URL for image path: ${product.image_path}`);
+                                     console.warn(`No se pudo obtener URL pública para: ${product.image_path}`);
                                      imageUrl = `https://placehold.co/600x400/f0f0f0/ffffff?text=URL+Error`;
                                 }
                             }
-
-                            // Crear el elemento de la tarjeta
                             const cardElement = document.createElement('div');
-                            // Pasar product e imageUrl a la función que crea el HTML
                             cardElement.innerHTML = createProductCardHTML(product, imageUrl);
-
-                            // Añadir listener a la imagen dentro de la tarjeta
                             const imgElement = cardElement.querySelector('.product-image');
                             if (imgElement) {
-                                // Pasar la URL pública y el nombre para el modal
                                 imgElement.addEventListener('click', () => showImageModal(imageUrl, product.name));
                             }
                             categoryGrid.appendChild(cardElement.firstElementChild);
                         });
-
                         categorySection.appendChild(categoryGrid);
                         productCategoriesContainer.appendChild(categorySection);
                     });
                 }
-                // Añadir listeners a botones (favoritos, eliminar) después de renderizar
                 addProductActionListeners();
 
             } catch (error) {
-                console.error("Error loading products from Supabase:", error);
-                productCategoriesContainer.innerHTML = ''; // Limpiar en caso de error
-                productsErrorMessage.classList.remove('hidden'); // Mostrar mensaje de error
+                console.error("Error cargando productos desde Supabase:", error);
+                productCategoriesContainer.innerHTML = '';
+                productsErrorMessage.textContent = `Error al cargar productos: ${error.message}`;
+                productsErrorMessage.classList.remove('hidden');
                 productCategoriesContainer.classList.add('hidden');
                 noProductsMessage.classList.add('hidden');
             }
         }
 
-
-        // Modificada para aceptar product (con id, image_path) y la imageUrl pública
         function createProductCardHTML(product, imageUrl) {
             const isFav = isFavorite(product.name);
             const favButtonClass = isFav ? 'added' : '';
@@ -434,23 +424,19 @@
             `;
         }
 
-
         function addProductActionListeners() {
-            // Listeners para botones de Favoritos
             document.querySelectorAll('.favorite-button').forEach(button => {
                  button.removeEventListener('click', handleFavoriteToggle);
                  button.addEventListener('click', handleFavoriteToggle);
             });
-            // Listeners para botones de Eliminar (Admin)
             document.querySelectorAll('.admin-delete-button').forEach(button => {
                 button.removeEventListener('click', handleDeleteProduct);
                 button.addEventListener('click', handleDeleteProduct);
             });
-            // Listeners para imágenes de producto (ya se añaden en loadProducts)
         }
 
-        // --- Lógica de Favoritos (SIN CAMBIOS - Sigue usando localStorage) ---
-        function loadFavorites() { /* ... igual que antes ... */
+        // --- Lógica de Favoritos (localStorage) ---
+        function loadFavorites() {
             const favorites = getFavorites();
             favoritesListContainer.innerHTML = '';
             if (favorites.length === 0) {
@@ -463,7 +449,7 @@
                 addRemoveFavoriteListeners();
             }
         }
-        function createFavoriteItemHTML(productName) { /* ... igual que antes ... */
+        function createFavoriteItemHTML(productName) {
              return `
                 <div class="flex justify-between items-center border-b border-gray-200 py-3">
                     <span class="text-gray-700">${productName}</span>
@@ -471,37 +457,37 @@
                 </div>
             `;
         }
-        function addRemoveFavoriteListeners() { /* ... igual que antes ... */
+        function addRemoveFavoriteListeners() {
             document.querySelectorAll('.remove-favorite-button').forEach(button => {
                  button.removeEventListener('click', handleRemoveFavorite);
                  button.addEventListener('click', handleRemoveFavorite);
             });
         }
-        function getFavorites() { /* ... igual que antes ... */
+        function getFavorites() {
             const favJson = localStorage.getItem(FAVORITES_STORAGE_KEY);
             return favJson ? JSON.parse(favJson) : [];
         }
-        function saveFavorites(favorites) { /* ... igual que antes ... */
+        function saveFavorites(favorites) {
             localStorage.setItem(FAVORITES_STORAGE_KEY, JSON.stringify(favorites));
         }
-        function isFavorite(productName) { /* ... igual que antes ... */
+        function isFavorite(productName) {
             return getFavorites().includes(productName);
         }
-        function addToFavorites(productName) { /* ... igual que antes ... */
+        function addToFavorites(productName) {
             const favorites = getFavorites();
             if (!favorites.includes(productName)) {
                 favorites.push(productName);
                 saveFavorites(favorites);
             }
         }
-        function removeFromFavorites(productName) { /* ... igual que antes ... */
+        function removeFromFavorites(productName) {
             let favorites = getFavorites();
             favorites = favorites.filter(name => name !== productName);
             saveFavorites(favorites);
         }
 
         // --- Manejadores de Eventos (Favoritos) ---
-        function handleFavoriteToggle(event) { /* ... igual que antes ... */
+        function handleFavoriteToggle(event) {
             const button = event.target;
             const productName = button.getAttribute('data-name');
             if (isFavorite(productName)) {
@@ -515,16 +501,16 @@
             }
             loadFavorites();
         }
-         function handleRemoveFavorite(event) { /* ... igual que antes ... */
+         function handleRemoveFavorite(event) {
             const productName = event.target.getAttribute('data-name');
             removeFromFavorites(productName);
             loadFavorites();
-            loadProducts(); // Recargar productos para actualizar botones
+            loadProducts();
         }
 
         // --- Lógica de Imagen Modal ---
         function showImageModal(imageUrl, caption) {
-            if (!imageUrl || imageUrl.includes('placehold.co')) return; // No mostrar placeholders
+            if (!imageUrl || imageUrl.includes('placehold.co')) return;
             modalImageContent.src = imageUrl;
             imageModalCaption.textContent = caption || '';
             imageModal.classList.add('show');
@@ -538,7 +524,7 @@
         }
 
 
-        // --- Lógica Admin (AHORA CON SUPABASE) ---
+        // --- Lógica Admin (CON SUPABASE) ---
         async function handleAddProduct(event) {
             event.preventDefault();
             if (!supabase) { alert("Error: Supabase no está conectado."); return; }
@@ -551,9 +537,8 @@
             const description = document.getElementById('product-description').value.trim();
             const category = document.getElementById('product-category').value.trim() || 'Sin Categoría';
             const price = parseFloat(document.getElementById('product-price').value);
-            const imageFile = productImageFile.files[0]; // Obtener el archivo
+            const imageFile = productImageFile.files[0];
 
-            // Validación
             if (!name || !description || !category || isNaN(price) || price <= 0 || !imageFile) {
                 alert('Completa todos los campos y selecciona una imagen.');
                 saveProductButton.disabled = false;
@@ -563,41 +548,27 @@
             }
 
             try {
-                // 1. Subir imagen a Supabase Storage
                 const fileExt = imageFile.name.split('.').pop();
-                const fileName = `${Date.now()}.${fileExt}`; // Nombre de archivo único
-                const filePath = `${fileName}`; // Ruta en el bucket (simple, solo nombre de archivo)
+                const fileName = `${Date.now()}.${fileExt}`;
+                const filePath = `${fileName}`;
 
                 adminFormStatus.textContent = 'Subiendo imagen...';
                 const { data: uploadData, error: uploadError } = await supabase.storage
                     .from(IMAGE_BUCKET_NAME)
-                    .upload(filePath, imageFile); // Subir archivo
+                    .upload(filePath, imageFile);
 
-                if (uploadError) {
-                    console.error('Error uploading image:', uploadError);
-                    throw new Error(`Error al subir imagen: ${uploadError.message}`);
-                }
+                if (uploadError) throw new Error(`Error al subir imagen: ${uploadError.message}`);
 
                 console.log('Image uploaded:', uploadData);
                 adminFormStatus.textContent = 'Imagen subida. Guardando datos...';
 
-                // 2. Insertar datos en la tabla 'products'
                 const { data: insertData, error: insertError } = await supabase
                     .from('products')
-                    .insert([{
-                        name: name,
-                        description: description,
-                        category: category,
-                        price: price,
-                        image_path: filePath // Guardar la ruta/nombre del archivo
-                    }])
-                    .select(); // Opcional: seleccionar para obtener el registro insertado
+                    .insert([{ name, description, category, price, image_path: filePath }])
+                    .select();
 
                 if (insertError) {
-                     console.error('Error inserting product:', insertError);
-                    // Intentar borrar la imagen si la inserción falló
-                    await supabase.storage.from(IMAGE_BUCKET_NAME).remove([filePath]);
-                    console.log('Image upload rolled back due to insert error.');
+                    await supabase.storage.from(IMAGE_BUCKET_NAME).remove([filePath]); // Rollback imagen
                     throw new Error(`Error al guardar producto: ${insertError.message}`);
                 }
 
@@ -605,19 +576,17 @@
                 adminFormStatus.textContent = '¡Producto guardado con éxito!';
                 adminFormStatus.className = 'text-sm text-center mt-4 text-green-600';
 
-                // Resetear y recargar
                 addProductForm.reset();
                 hideAdminModal();
-                await loadProducts(); // Esperar a que recarguen los productos
+                await loadProducts();
 
             } catch (error) {
-                console.error('Error in handleAddProduct:', error);
+                console.error('Error en handleAddProduct:', error);
                 adminFormStatus.textContent = `Error: ${error.message}`;
                 adminFormStatus.className = 'text-sm text-center mt-4 text-red-600';
             } finally {
-                saveProductButton.disabled = false; // Rehabilitar botón
-                 // Limpiar mensaje de estado después de un tiempo
-                 setTimeout(() => { adminFormStatus.textContent = ''; }, 5000);
+                saveProductButton.disabled = false;
+                setTimeout(() => { adminFormStatus.textContent = ''; }, 5000);
             }
         }
 
@@ -626,59 +595,33 @@
 
             const button = event.target;
             const productId = parseInt(button.getAttribute('data-id'));
-            const imagePath = button.getAttribute('data-image-path'); // Obtener ruta de imagen
+            const imagePath = button.getAttribute('data-image-path');
 
-            if (isNaN(productId)) {
-                console.error("Invalid product ID for deletion.");
-                return;
-            }
+            if (isNaN(productId)) { console.error("ID de producto inválido."); return; }
 
-            if (confirm(`¿Eliminar este producto (ID: ${productId})? Esta acción no se puede deshacer.`)) {
-                 button.disabled = true; // Deshabilitar botón mientras se borra
-                 button.textContent = '...';
-
+            if (confirm(`¿Eliminar este producto (ID: ${productId})?`)) {
+                 button.disabled = true; button.textContent = '...';
                 try {
-                    // 1. Eliminar de la base de datos
-                    const { error: deleteDbError } = await supabase
-                        .from('products')
-                        .delete()
-                        .eq('id', productId);
-
-                    if (deleteDbError) {
-                        throw new Error(`Error al borrar de DB: ${deleteDbError.message}`);
-                    }
+                    const { error: deleteDbError } = await supabase.from('products').delete().eq('id', productId);
+                    if (deleteDbError) throw new Error(`Error al borrar de DB: ${deleteDbError.message}`);
                     console.log(`Product ${productId} deleted from DB.`);
 
-                    // 2. Eliminar imagen del Storage (si existe imagePath)
                     if (imagePath) {
-                        const { data: removeData, error: removeStorageError } = await supabase.storage
-                            .from(IMAGE_BUCKET_NAME)
-                            .remove([imagePath]);
+                        const { error: removeStorageError } = await supabase.storage.from(IMAGE_BUCKET_NAME).remove([imagePath]);
+                        if (removeStorageError) console.warn(`No se pudo borrar imagen ${imagePath}:`, removeStorageError.message);
+                        else console.log(`Image ${imagePath} deleted from Storage.`);
+                    } else { console.log(`Sin image path para ${productId}, omitiendo borrado de storage.`); }
 
-                        if (removeStorageError) {
-                            // Advertir pero no detener si falla el borrado de imagen (podría no existir)
-                            console.warn(`Could not delete image ${imagePath} from storage:`, removeStorageError.message);
-                        } else {
-                             console.log(`Image ${imagePath} deleted from Storage.`);
-                        }
-                    } else {
-                         console.log(`No image path found for product ${productId}, skipping storage deletion.`);
-                    }
-
-                    // 3. Recargar productos
                     await loadProducts();
-
                 } catch (error) {
-                    console.error('Error deleting product:', error);
-                    alert(`Error al eliminar producto: ${error.message}`);
-                     button.disabled = false; // Rehabilitar en caso de error
-                     button.textContent = '×';
+                    console.error('Error eliminando producto:', error);
+                    alert(`Error al eliminar: ${error.message}`);
+                    button.disabled = false; button.textContent = '×';
                 }
-                // No es necesario rehabilitar el botón si se elimina la tarjeta entera al recargar
             }
         }
 
-        // --- Lógica Formulario Contacto (SIN CAMBIOS - Sigue usando Formspree y localStorage para favoritos) ---
+        // --- Lógica Formulario Contacto ---
         async function handleContactFormSubmit(event) {
             event.preventDefault();
             const submitButton = document.getElementById('submit-contact-form');
@@ -690,10 +633,10 @@
             const name = formData.get('name');
             const email = formData.get('email');
             const message = formData.get('message');
-            const favorites = getFavorites(); // Obtiene de localStorage
+            const favorites = getFavorites(); // De localStorage
             let messageBody = `Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}\n\n`;
             if (favorites.length > 0) {
-                messageBody += "--- Favoritos Seleccionados (Local) ---\n"; // Aclarar que son locales
+                messageBody += "--- Favoritos Seleccionados (Local) ---\n";
                 favorites.forEach(fav => { messageBody += `- ${fav}\n`; });
             } else {
                  messageBody += "--- (No seleccionó favoritos) ---";
@@ -720,7 +663,7 @@
                 formStatus.className = 'text-center mt-4 text-sm text-red-600';
             } finally {
                  submitButton.disabled = false;
-                 setTimeout(() => { formStatus.textContent = ''; }, 5000); // Limpiar status
+                 setTimeout(() => { formStatus.textContent = ''; }, 5000);
             }
         }
 
@@ -744,8 +687,8 @@
              alert("Has salido del modo administrador.");
         }
         function showAdminModal() {
-             addProductForm.reset(); // Limpiar formulario al abrir
-             adminFormStatus.textContent = ''; // Limpiar status
+             addProductForm.reset();
+             adminFormStatus.textContent = '';
              adminModal.classList.add('show');
         }
         function hideAdminModal() {
